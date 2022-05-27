@@ -1,0 +1,187 @@
+.order-content .or_content {
+  width: 990px;
+  margin: 0 auto;
+}
+.order-content .or_content .adress {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.order-content .or_content .adress > p {
+  color: #333;
+  line-height: 25px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.order-content .or_content .adress .adre {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 106px;
+}
+.order-content .or_content .adress .adre .co {
+  display: block;
+  width: 207px;
+  padding: 11px 15px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.order-content .or_content .adress .adre .co .co_top {
+  font-weight: bold;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #eee;
+}
+.order-content .or_content .adress .adre .co .co_top .ss {
+  margin-right: 5px;
+}
+.order-content .or_content .adress .adre .co .co_btm {
+  margin-bottom: 10px;
+}
+.order-content .or_content .adress .adre .co a {
+  font-size: 14px;
+  color: #c97;
+}
+.order-content .or_content .adress .adre .co a:hover {
+  color: #ff0036;
+}
+.order-content .or_content .adress .control {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.order-content .or_content .adress .control a {
+  color: #c97;
+  font-size: 14px;
+  line-height: 18px;
+}
+.order-content .or_content .adress .control a:hover {
+  color: #ff0036;
+}
+.order-content .or_content .order_info {
+  overflow: hidden;
+}
+.order-content .or_content .order_info > p {
+  color: #333;
+  line-height: 25px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.order-content .or_content .order_info .color {
+  color: #ff0036;
+  font-weight: bold;
+}
+.order-content .or_content .order_info thead tr th {
+  border: 0;
+}
+.order-content .or_content .order_info tbody tr td {
+  border: 0;
+}
+.order-content .or_content .order_info tbody .nu {
+  overflow: hidden;
+}
+.order-content .or_content .order_info tbody .nu .fh {
+  float: left;
+  width: 19px;
+  line-height: 25px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+.order-content .or_content .order_info tbody .nu .fh:hover {
+  border: 1px solid #FF5000;
+  color: #FF5000;
+}
+.order-content .or_content .order_info tbody .nu .num {
+  float: left;
+  width: 40px;
+  text-align: center;
+  line-height: 25px;
+  border: 1px solid #ccc;
+  border-left: 0;
+  border-right: 0;
+}
+.order-content .or_content .order_info .conten {
+  margin: 0px;
+  padding: 0 10px;
+  background-color: #f2f7ff;
+  border-bottom: 1px dotted #80b2ff;
+}
+.order-content .or_content .order_info .conten .cont {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ffffff;
+}
+.order-content .or_content .order_info .conten .cont .left {
+  padding: 10px;
+  border-right: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+}
+.order-content .or_content .order_info .conten .cont .left .le_top {
+  line-height: 50px;
+  padding: 5px;
+}
+.order-content .or_content .order_info .conten .cont .left .le_top input {
+  margin-right: 5px;
+}
+.order-content .or_content .order_info .conten .cont .right {
+  width: 40%;
+  padding: 0px;
+  border-right: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+}
+.order-content .or_content .order_info .conten .cont .right .ri_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 50px;
+  padding: 10px 0 10px 20px;
+}
+.order-content .or_content .order_info .conten .btm {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 10px 0px;
+  border-top: 1px solid #ffffff;
+}
+.order-content .or_content .order_info .lat {
+  display: flex;
+  justify-content: space-between;
+}
+.order-content .or_content .order_info .lat .last {
+  width: 320px;
+  padding: 10px 5px 15px 20px;
+  border: 1px solid #ff0036;
+  margin-top: 20px;
+}
+.order-content .or_content .order_info .lat .last p {
+  color: #333;
+  text-align: right;
+}
+.order-content .or_content .order_info .lat .last p:nth-child(2) {
+  margin-top: 10px;
+}
+.order-content .or_content .order_info .lat .last p .title {
+  color: #333;
+  font-weight: bold;
+}
+.order-content .or_content .order_info .lat .last p .mon {
+  font-size: 26px;
+  color: #999;
+}
+.order-content .or_content .order_info .lat .last p .mon .price {
+  margin-left: 5px;
+}
+.order-content .or_content .order_info .at {
+  display: flex;
+  justify-content: space-between;
+}
+.order-content .or_content .order_info .at .btn {
+  display: block;
+  width: 182px;
+  line-height: 40px;
+  background-color: #ff0036;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}

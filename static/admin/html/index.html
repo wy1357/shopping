@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/cropper.css">
+    <link rel="stylesheet" href="../css/avatar.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <!-- 导入字体图标的样式 -->
+    <link rel="stylesheet" href="http://escook.cn:8086/assets/fonts/iconfont.css">
+</head>
+<style>
+    #banners {
+        display: block;
+    }
+
+    .logo {
+        width: 160px;
+        margin: 0 auto;
+        font-size: 24px;
+        line-height: 64px;
+        color: skyblue;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo layui-hide-xs layui-bg-black">
+                <p class="logo">后台管理系统</p>
+            </div>
+            <!-- 头部区域（可配合layui 已有的水平导航） -->
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                    <a href="javascript:;" id="header-avatar">
+                        <span class="text-avatar">a</span>
+                        aaa
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">基本资料</a></dd>
+                        <dd><a href="javascript:;">更换头像</a></dd>
+                        <dd><a href="javascript:;">重置密码</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-hide-xs">
+                    <!-- 退出登录的链接 -->
+                    <a href="javascript:;" class="logout"><span class="iconfont icon-quit"></span>退出</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 侧边栏区域 -->
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll slider">
+                <!-- 用户的信息区域 -->
+                <div class="user-info-box">
+
+                </div>
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="side-nav" lay-shrink="all" id="transform">
+
+                    <li class="layui-nav-item">
+                        <!-- 一级标题 -->
+                        <a href="javascript:;"><span class="iconfont icon-16"></span>商品管理</a>
+                        <!-- 二级标题 -->
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" data-id="banners"><i
+                                        class="layui-icon layui-icon-app"></i>banner管理</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="banner-handle"><i
+                                        class="layui-icon layui-icon-app"></i>banner操作</a>
+                            </dd>
+
+                            <dd>
+                                <a href="javascript:;" data-id="cate"><i
+                                        class="layui-icon layui-icon-app"></i>商品分类管理</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="cate-handle"><i
+                                        class="layui-icon layui-icon-app"></i>商品分类的操作</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="color-classify"><i
+                                        class="layui-icon layui-icon-app"></i>商品颜色分类管理</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="color-classify-handle"><i
+                                        class="layui-icon layui-icon-app"></i>商品颜色分类的操作</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="commodity"><i
+                                        class="layui-icon layui-icon-app"></i>商品的管理</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="commodity-handle"><i
+                                        class="layui-icon layui-icon-app"></i>商品的管理操作</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="details"><i
+                                        class="layui-icon layui-icon-app"></i>商品详情</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="details-handle"><i
+                                        class="layui-icon layui-icon-app"></i>商品详情操作</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" data-id="show-img"><i
+                                        class="layui-icon layui-icon-app"></i>商品详情展示图管理</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <!-- 一级标题 -->
+                        <a href="javascript:;"><span class="iconfont icon-user"></span>个人中心</a>
+                        <!-- 二级标题 -->
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" data-id="user"><i class="layui-icon layui-icon-app"></i>基本资料</a>
+                            </dd>
+                            <dd><a href="javascript:;" data-id="avatar"><i
+                                        class="layui-icon layui-icon-app"></i>更换头像</a>
+                            </dd>
+                            <dd><a href="javascript:;" data-id="pwd"><i class="layui-icon layui-icon-app"></i>重置密码</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- banner管理 -->
+        <div class="layui-body" id="banners">
+            <div id="container">
+                <div class="layui-card" id="manage">
+                    <div class="layui-card-header">轮播图管理</div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" id="form-pub">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">轮播类型</label>
+                                <div class="layui-input-block">
+                                    <select name="type" lay-verify="required">
+                                        <option value="">请选择轮播类型</option>
+                                        <option value="one_type">one_type</option>
+                                        <option value="two_type">two_type</option>
+                                        <option value="three_type">three_type</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item" id="slideshow">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">轮播图片</label>
+                                <div class="layui-form-item cover-box">
+                                    <!-- 图片展示区 -->
+                                    <div class="img_preview" style="margin-left: 110px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <!-- 选择图片的文件选择框 -->
+                                    <input type="file" id="files" style="display: none;" accept="image/*"
+                                        name="cover_img" multiple="multiple">
+                                    <button type="button" class="layui-btn layui-btn-danger"
+                                        id="select_img">选择图片</button>
+                                    <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- banner的操作 -->
+        <div class="layui-body" id="banner-handle">
+            <div id="container">
+                <div class="layui-card card">
+                    <div class="layui-card-header"
+                        style="display: flex;justify-content: space-between;align-items: center;">
+                        <span>banner的操作</span>
+                    </div>
+                    <div class="layui-card-body title_type">
+                        <!-- 表格区域 -->
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col>
+                                <col>
+                                <col width="200">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>轮播图</th>
+                                    <th>轮播类型</th>
+                                    <th>添加时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- 分页区域 -->
+                        <div id="test1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 商品分类管理 -->
+        <div class="layui-body" id="cate">
+            <!-- 内容主体区域 -->
+            <div id="container">
+                <!-- 卡片区域 -->
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <span>商品分类管理</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" id="cate-form-pub">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">商品分类</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="cate_name" required lay-verify="required|title"
+                                        placeholder="请输入商品分类名称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" id="cate-classify">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">商品图片</label>
+                                <div class="layui-form-item cover-box">
+                                    <!-- 图片展示区 -->
+                                    <div class="cate_preview" style="margin-left: 110px;">
+                                        <img src="" alt="" class="cate_pic">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <!-- 选择图片的文件选择框 -->
+                                    <input type="file" id="cate-files" style="display: none;" name="cate_img"
+                                        lay-verify="required">
+                                    <button type="button" class="layui-btn layui-btn-danger"
+                                        id="cate_select_img">选择图片</button>
+                                    <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 商品分类的操作 -->
+        <div class="layui-body" id="cate-handle">
+            <div id="container">
+                <div class="layui-card cate-card">
+                    <div class="layui-card-header"
+                        style="display: flex;justify-content: space-between;align-items: center;">
+                        <span>商品分类的操作</span>
+                    </div>
+                    <div class="layui-card-body cate_type">
+                        <!-- 表格区域 -->
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col>
+                                <col>
+                                <col width="200">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>导航分类名称</th>
+                                    <th>分类图片</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- 分页区域 -->
+                        <div id="test1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 商品颜色分类管理 -->
+        <div class="layui-body" id="color-classify">
+            <!-- 内容主体区域 -->
+            <div id="container">
+                <!-- 卡片区域 -->
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <span>商品颜色分类管理</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" id="color-form-pub">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">颜色分类ID</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="cate_id" required lay-verify="required"
+                                        placeholder="请输入商品颜色分类ID" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" id="colorClassify">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">商品图片</label>
+                                <div class="layui-form-item cover-box">
+                                    <!-- 图片展示区 -->
+                                    <div class="color_preview" style="margin-left: 110px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <!-- 选择图片的文件选择框 -->
+                                    <input type="file" id="color-files" style="display: none;" name="color_type"
+                                        lay-verify="required" multiple="multiple">
+                                    <button type="button" class="layui-btn layui-btn-danger"
+                                        id="color_select_img">选择图片</button>
+                                    <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 商品颜色分类的操作 -->
+        <div class="layui-body" id="color-classify-handle">
+            <div id="container">
+                <div class="layui-card color-classify-card">
+                    <div class="layui-card-header"
+                        style="display: flex;justify-content: space-between;align-items: center;">
+                        <span>商品颜色分类的操作</span>
+                    </div>
+                    <div class="layui-card-body color-classify_type">
+                        <!-- 表格区域 -->
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col>
+                                <col>
+                                <col width="200">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>图片</th>
+                                    <th>分类ID</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- 分页区域 -->
+                        <div id="test1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 商品的管理 -->
+        <div class="layui-body" id="commodity">
+            <!-- 内容主体区域 -->
+            <div id="container">
+                <!-- 卡片 -->
+                <div class="layui-card card" id="test">
+                    <div class="layui-card-header">商品的管理</div>
+                    <div class="layui-card-body">
+                        <!-- 表单 -->
+                        <form class="layui-form form-pub" style="width: auto;" id="news_publish">
+                            <!-- 标题 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">分类名称</label>
+                                <div class="layui-input-block">
+                                    <select name="type_name" lay-verify="required">
+                                        <option value="">请选择分类名称</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- 分类 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">商品价格</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="price" required lay-verify="required" placeholder="请输入商品价格"
+                                        autocomplete="off" class="layui-input" maxlength="30">
+                                </div>
+                            </div>
+                            <!-- 内容 -->
+                            <div class="layui-form-item">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">商品介绍</label>
+                                <!-- 为富文本编辑器外部的容器设置高度 -->
+                                <div class="layui-input-block" style="height: 400px;">
+                                    <!-- 重要：将来这个 textarea 会被初始化为富文本编辑器 -->
+                                    <textarea name="content"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item" id="addCommodity">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">商品图片</label>
+                                <div class="layui-form-item cover-box">
+
+                                    <!-- 图片展示区 -->
+                                    <div class="img_previews" style="margin-left: 110px;">
+                                        <img src="" alt="" class="commodity-pic">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <!-- 选择图片的文件选择框 -->
+                                    <input type="file" id="add_files" style="display: none;" accept="image/*"
+                                        name="com_img">
+                                    <button type="button" class="layui-btn layui-btn-danger"
+                                        id="select_imgs">选择图片</button>
+                                    <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- 商品的管理操作 -->
+         <div class="layui-body" id="commodity-handle">
+            <div id="container">
+                <div class="layui-card commodity-card">
+                    <div class="layui-card-header"
+                        style="display: flex;justify-content: space-between;align-items: center;">
+                        <span>商品的管理操作</span>
+                    </div>
+                    <div class="layui-card-body commodity_type">
+                        <!-- 表格区域 -->
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col>
+                                <col>
+                                <col width="200">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>分类名称</th>
+                                    <th>图片</th>
+                                    <th>价格</th>
+                                    <th>商品介绍</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- 分页区域 -->
+                        <div id="test1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 商品详情 -->
+        <div class="layui-body" id="details">
+            <!-- 内容主体区域 -->
+            <div id="container">
+                <!-- 卡片 -->
+                <div class="layui-card" id="de_test">
+                    <div class="layui-card-header">商品详情</div>
+                    <div class="layui-card-body">
+                        <!-- 表单 -->
+                        <form class="layui-form form-pub" style="width: auto;" id="add-detailsInfo">
+                            <!-- 标题 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">商品介绍</label>
+                                <div class="layui-input-block">
+                                    <select name="content" lay-verify="required" id="de_content">
+                                        <option value="">请选择商品介绍信息</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- 内容 -->
+                            <div class="layui-form-item">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">商品功能</label>
+                                <!-- 为富文本编辑器外部的容器设置高度 -->
+                                <div class="layui-input-block" style="height: 400px;">
+                                    <!-- 重要：将来这个 textarea 会被初始化为富文本编辑器 -->
+                                    <textarea name="product_gn"></textarea>
+                                </div>
+                            </div>
+                            <!-- 分类 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">商品价格</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="old_price" required lay-verify="required"
+                                        placeholder="请输入商品价格" autocomplete="off" class="layui-input" maxlength="30">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item" id="addPrice">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">商品促销价</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="new_price" required lay-verify="required"
+                                        placeholder="请输入商品价格" autocomplete="off" class="layui-input" maxlength="30">
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">发布</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 商品详情操作 -->
+        <div class="layui-body" id="details-handle">
+            <div id="container">
+                <div class="layui-card details-card">
+                    <div class="layui-card-header"
+                        style="display: flex;justify-content: space-between;align-items: center;">
+                        <span>商品的管理操作</span>
+                    </div>
+                    <div class="layui-card-body details_type">
+                        <!-- 表格区域 -->
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col>
+                                <col>
+                                <col width="200">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>原价</th>
+                                    <th>现价</th>
+                                    <th>商品介绍</th>
+                                    <th>商品功能</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- 分页区域 -->
+                        <div id="test1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 商品详情展示图管理 -->
+        <div class="layui-body" id="show-img">
+            <!-- 内容主体区域 -->
+            <div id="container">
+                <!-- 卡片区域 -->
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <span>商品详情展示图管理</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" id="show-img-pub">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">分类ID</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="cates_id" required lay-verify="required"
+                                        placeholder="请输入商品展示图分类ID" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" id="imgClassify">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">商品展示图</label>
+                                <div class="layui-form-item cover-box">
+                                    <!-- 图片展示区 -->
+                                    <div class="showImg_preview" style="margin-left: 110px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <!-- 选择图片的文件选择框 -->
+                                    <input type="file" id="show-img-files" style="display: none;" name="show_img"
+                                        lay-verify="required" multiple="multiple">
+                                    <button type="button" class="layui-btn layui-btn-danger"
+                                        id="select-show-img">选择图片</button>
+                                    <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- 小图 -->
+                    <div class="layui-card-body">
+                        <form class="layui-form" id="show-img-small">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">分类ID</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="small_id" required lay-verify="required"
+                                        placeholder="请输入商品展示小图片分类ID" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" id="show-imgSmall">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">左侧展示图</label>
+                                <div class="layui-form-item cover-box">
+                                    <!-- 图片展示区 -->
+                                    <div class="small-showImg-preview" style="margin-left: 110px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <!-- 选择图片的文件选择框 -->
+                                    <input type="file" id="small-img-files" style="display: none;" name="small_img"
+                                        lay-verify="required" multiple="multiple">
+                                    <button type="button" class="layui-btn layui-btn-danger"
+                                        id="select-show-small-img">选择图片</button>
+                                    <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- 大图 -->
+                    <div class="layui-card-body">
+                        <form class="layui-form" id="show-img-big">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">分类ID</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="big_id" required lay-verify="required"
+                                        placeholder="请输入商品展示大图片分类ID" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" id="show-imgBig">
+                                <!-- 左侧的 label -->
+                                <label class="layui-form-label">左侧展示图</label>
+                                <div class="layui-form-item cover-box">
+                                    <!-- 图片展示区 -->
+                                    <div class="big-showImg-preview" style="margin-left: 110px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <!-- 选择图片的文件选择框 -->
+                                    <input type="file" id="big-img-files" style="display: none;" name="big_img"
+                                        lay-verify="required" multiple="multiple">
+                                    <button type="button" class="layui-btn layui-btn-danger"
+                                        id="select-show-big-img">选择图片</button>
+                                    <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 基本资料 -->
+        <div class="layui-body" id="user">
+            <!-- 内容主体区域 -->
+            <div id="container">
+                <!-- 卡片区域 -->
+                <div class="layui-card">
+                    <div class="layui-card-header">修改用户信息</div>
+                    <div class="layui-card-body">
+                        <!-- 表单 -->
+                        <form class="layui-form" lay-filter="user-form" id="layui-form" style="width: 500px;">
+                            <!-- 隐藏域 -->
+                            <input type="hidden" name="id">
+                            <!-- 登录名称 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">登录名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="username" required placeholder="请输入登录名称" autocomplete="off"
+                                        class="layui-input" disabled>
+                                </div>
+                            </div>
+                            <!-- 用户昵称 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">用户昵称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="nickname" required placeholder="请输入用户昵称" autocomplete="off"
+                                        class="layui-input" lay-verify="required|nickname" maxlength="10">
+                                </div>
+                            </div>
+                            <!-- 用户邮箱 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">用户邮箱</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="email" required placeholder="请输入用户邮箱" autocomplete="off"
+                                        class="layui-input" lay-verify="required|email">
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">提交修改</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 更换头像 -->
+        <div class="layui-body" id="avatar">
+            <!-- 内容主体区域 -->
+            <div id="container">
+                <!-- 卡片区域 -->
+                <div class="layui-card">
+                    <div class="layui-card-header">更换头像</div>
+                    <div class="layui-card-body" id="trans_pic">
+                        <!-- 头像裁剪区域 -->
+                        <!-- 第一行的图片裁剪和预览区域 -->
+                        <div class="row1">
+                            <!-- 图片裁剪区域 -->
+                            <div class="cropper-box">
+                                <!-- 这个 img 标签很重要，将来会把它初始化为裁剪区域 -->
+                                <img id="image" src="../img/avatar.jpg"
+                                    style="width: 100%; height: 100%; object-fit: cover;" />
+                            </div>
+                            <!-- 图片的预览区域 -->
+                            <div class="preview-box">
+                                <div>
+                                    <!-- 宽高为 100px 的预览区域 -->
+                                    <div class="img-preview w100"></div>
+                                    <p class="size">100 x 100</p>
+                                </div>
+                                <div>
+                                    <!-- 宽高为 50px 的预览区域 -->
+                                    <div class="img-preview w50"></div>
+                                    <p class="size">50 x 50</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 第二行的按钮区域 -->
+                        <div class="row2" style="justify-content: flex-start;">
+                            <!-- 选择图片的文件选择框 -->
+                            <input type="file" id="file_pic" style="display: none;" accept="image/*">
+                            <button type="button" class="layui-btn" id="btnChooseImg">选择图片</button>
+                            <button class="layui-btn layui-btn-danger" id="btnUploadImg">上传头像</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 重置密码 -->
+        <div class="layui-body" id="pwd">
+            <!-- 内容主体区域 -->
+            <div id="container">
+                <!-- 卡片区域 -->
+                <div class="layui-card">
+                    <div class="layui-card-header">修改密码</div>
+                    <div class="layui-card-body">
+                        <!-- 表单 -->
+                        <form class="layui-form" id="formUpdatePwd" style="width: 500px;">
+                            <!-- 原密码 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">原密码</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="oldPwd" required placeholder="请输入原密码"
+                                        autocomplete="off" class="layui-input" lay-verify="required|pwd">
+                                </div>
+                            </div>
+                            <!-- 新密码 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">新密码</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="newPwd" required placeholder="请输入新密码"
+                                        autocomplete="off" class="layui-input" lay-verify="required|samePwd">
+                                </div>
+                            </div>
+                            <!-- 确认密码 -->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">确认新密码</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="re_pwd" required placeholder="请确认新密码"
+                                        autocomplete="off" class="layui-input" lay-verify="required|repwd">
+                                </div>
+                            </div>
+                            <!-- 按钮 -->
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">修改密码</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary" id="resetPwd">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="../layui/layui.js"></script>
+<script src="../js/template-web.js"></script>
+<!-- 轮播数据 -->
+<script type="text/html" id="banner_type">
+    {{each data}}
+    <tr>
+      <td>{{$value.id}}</td>
+      <td>
+          <img src="http://localhost:3000{{$value.cover_img}}" alt="">
+      </td>
+      <td>{{$value.type}}</td>
+      <td>{{$value.date.slice(0,-5)}}</td>
+      <td>
+      <button type="button" class="layui-btn layui-btn-xs btn-edit updateInfo" data-id={{$value.id}}>修改</button>
+      <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete deleteInfo" data-id={{$value.id}}>删除</button>
+      </td>
+    <tr>
+    {{/each}}
+  </script>
+<script type="text/html" id="banner-popup">
+    <form class="layui-form" id="form-edit" lay-filter="form-update" style="margin-top: 30px;">
+        <!-- 分类的 id（隐藏域） (大写Id)-->
+        <input type="hidden" name="id">
+        <!-- 轮播类型 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">轮播类型</label>
+            <div class="layui-input-block">
+                <input type="text" name="type" required lay-verify="required" placeholder="请输入轮播类型"
+                    autocomplete="off" class="layui-input" style="width: 500px;">
+            </div>
+        </div>
+        <!-- 轮播图 -->
+        <div class="layui-form-item" id="slideshow">
+            <!-- 左侧的 label -->
+            <label class="layui-form-label">轮播图片</label>
+            <div class="layui-form-item cover-box">
+                <!-- 图片展示区 -->
+                <div class="popup_preview" style="margin-left: 110px;">
+                    <img src="" alt="" class="popup_pic">
+                </div>
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <!-- 选择图片的文件选择框 -->
+                <input type="file" id="popup-files" required style="display: none;" accept="image/*"
+                    name="cover_img" multiple="multiple">
+                <button type="button" class="layui-btn layui-btn-danger" id="select_popup_img">更换图片</button>
+                <button class="layui-btn confirmUpdate" lay-submit lay-filter="formDemo">确认修改</button>
+            </div>
+        </div>
+    </form>
+</script>
+<!-- 导航分类数据 -->
+<!-- 轮播数据 -->
+<script type="text/html" id="nav_type_data">
+    {{each data}}
+    <tr>
+      <td>{{$value.id}}</td>
+      <td>{{$value.cate_name}}</td>
+      <td>
+          <img src="http://localhost:3000{{$value.cate_img}}" alt="">
+      </td>
+      <td>
+      <button type="button" class="layui-btn layui-btn-xs btn-edit updateNav" data-id={{$value.id}}>修改</button>
+      <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete deleteNav" data-id={{$value.id}}>删除</button>
+      </td>
+    <tr>
+    {{/each}}
+  </script>
+<!-- 修改弹窗 -->
+<script type="text/html" id="new-type-popup">
+    <form class="layui-form" id="new-type-pub" lay-filter="form-update">
+         <!-- 分类的 id（隐藏域） (大写Id)-->
+         <input type="hidden" name="id">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品分类</label>
+            <div class="layui-input-block">
+                <input type="text" name="cate_name" required lay-verify="required|title"
+                    placeholder="请输入商品分类名称" autocomplete="off" class="layui-input" style="width: 500px;">
+            </div>
+        </div>
+        <div class="layui-form-item" id="nav-classify">
+            <!-- 左侧的 label -->
+            <label class="layui-form-label">商品图片</label>
+            <div class="layui-form-item cover-box">
+                <!-- 图片展示区 -->
+                <div class="nav_preview" style="margin-left: 110px;">
+                    <img src="" alt="" class="nav_pic">
+                </div>
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <!-- 选择图片的文件选择框 -->
+                <input type="file" id="nav-files" style="display: none;" name="cate_img"
+                    lay-verify="required">
+                <button type="button" class="layui-btn layui-btn-danger"
+                    id="nav_select_img">选择图片</button>
+                <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+            </div>
+        </div>
+    </form>
+</script>
+<!-- 商品颜色分类的操作 -->
+<script type="text/html" id="color_type_data">
+    {{each data}}
+    <tr>
+      <td>{{$value.id}}</td>
+      <td>
+        <img src="http://localhost:3000{{$value.color_type}}" alt="">
+      </td>
+      <td>{{$value.cate_id}}</td>
+      <td>
+      <button type="button" class="layui-btn layui-btn-xs btn-edit updateColor" data-id={{$value.id}}>修改</button>
+      <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete deleteColor" data-id={{$value.id}}>删除</button>
+      </td>
+    <tr>
+    {{/each}}
+  </script>
+  <!-- 修改弹窗 -->
+<script type="text/html" id="color-type-popup">
+    <form class="layui-form" id="color-type-pub" lay-filter="form-update">
+         <!-- 分类的 id（隐藏域） (大写Id)-->
+         <input type="hidden" name="id">
+        <div class="layui-form-item">
+            <label class="layui-form-label">颜色分类ID</label>
+            <div class="layui-input-block">
+                <input type="text" name="cate_id" required lay-verify="required"
+                    placeholder="请输入商品颜色分类ID" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item" id="colorType">
+            <!-- 左侧的 label -->
+            <label class="layui-form-label">商品图片</label>
+            <div class="layui-form-item cover-box">
+                <!-- 图片展示区 -->
+                <div class="type_preview" style="margin-left: 110px;">
+                    <img src="" alt="" class="color_pic">
+                </div>
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <!-- 选择图片的文件选择框 -->
+                <input type="file" id="type-files" style="display: none;" name="color_type"
+                    lay-verify="required">
+                <button type="button" class="layui-btn layui-btn-danger"
+                    id="color_type_img">选择图片</button>
+                <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+            </div>
+        </div>
+    </form>
+</script>
+<!-- 商品的管理操作 -->
+<script type="text/html" id="commodity_type_data">
+    {{each data}}
+    <tr>
+      <td>{{$value.id}}</td>
+      <td>{{$value.type_name}}</td>
+      <td>
+        <img src="http://localhost:3000{{$value.com_img}}" alt="">
+      </td>
+      <td>{{$value.price}}</td>
+      <td>{{$value.content}}</td>
+      <td>
+      <button type="button" class="layui-btn layui-btn-xs btn-edit updateCommodity" data-id={{$value.id}}>修改</button>
+      <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete deleteCommodity" data-id={{$value.id}}>删除</button>
+      </td>
+    <tr>
+    {{/each}}
+  </script>
+    <!-- 修改弹窗 -->
+<script type="text/html" id="commodity-type-popup">
+    <form class="layui-form" id="commodity-type-pub" lay-filter="form-update">
+         <!-- 分类的 id（隐藏域） (大写Id)-->
+         <input type="hidden" name="id">
+        <!-- 标题 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">分类名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="type_name" required lay-verify="required" placeholder="请输入商品分类名称"
+                autocomplete="off" class="layui-input" maxlength="30">
+            </div>
+        </div>
+        <!-- 分类 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品价格</label>
+            <div class="layui-input-block">
+                <input type="text" name="price" required lay-verify="required" placeholder="请输入商品价格"
+                    autocomplete="off" class="layui-input" maxlength="30">
+            </div>
+        </div>
+        <!-- 内容 -->
+        <div class="layui-form-item">
+            <!-- 左侧的 label -->
+            <label class="layui-form-label">商品介绍</label>
+            <!-- 为富文本编辑器外部的容器设置高度 -->
+            <div class="layui-input-block">
+                <input type="text" name="content" required lay-verify="required" placeholder="请输入商品价格"
+                    autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item" id="update-Commodity">
+            <!-- 左侧的 label -->
+            <label class="layui-form-label">商品图片</label>
+            <div class="layui-form-item cover-box">
+
+                <!-- 图片展示区 -->
+                <div class="img_previews" style="margin-left: 110px;">
+                    <img src="" alt="" class="update-commodity-pic">
+                </div>
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <!-- 选择图片的文件选择框 -->
+                <input type="file" id="commodity_files" style="display: none;" accept="image/*"
+                    name="com_img">
+                <button type="button" class="layui-btn layui-btn-danger"
+                    id="commodity_select_imgs">选择图片</button>
+                <button class="layui-btn btn_pub" lay-submit lay-filter="formImg">上传图片</button>
+            </div>
+        </div>
+    </form>
+</script>
+<!-- 商品分类 -->
+<script type="text/html" id="commodityManage">
+    {{each data}}
+    <option value="{{$value.cate_name}}">{{$value.cate_name}}</option>
+     {{/each}}
+</script>
+<!-- 商品详情 -->
+<script type="text/html" id="detailsManage">
+    {{each data}}
+    <option value="{{$value.content}}">{{$value.content}}</option>
+    {{/each}}
+</script>
+<script>
+    //JS 
+    layui.use(['element', 'layer', 'util'], function () {
+        var element = layui.element
+            , layer = layui.layer
+            , util = layui.util
+            , $ = layui.$;
+
+        //头部事件
+        util.event('lay-header-event', {
+            //左侧菜单事件
+            menuLeft: function (othis) {
+                layer.msg('展开左侧菜单的操作', { icon: 0 });
+            }
+            , menuRight: function () {
+                layer.open({
+                    type: 1
+                    , content: '<div style="padding: 15px;">处理右侧面板的操作</div>'
+                    , area: ['260px', '100%']
+                    , offset: 'rt' //右上角
+                    , anim: 5
+                    , shadeClose: true
+                });
+            }
+        });
+
+    });
+</script>
+
+<script src="../js/jquery-3.6.0.js"></script>
+<script src="../js/Cropper.js"></script>
+<script src="../js/jquery-cropper.js"></script>
+<script src="../tinymce/tinymce/tinymce.min.js"></script>
+<script src="../tinymce/tinymce/tinymce_setup.js"></script>
+<script src="../js/base.js"></script>
+<script src="../js/index.js"></script>
+
+<script>
+    // 初始化富文本编辑器
+    initEditor()
+</script>
+
+</html>

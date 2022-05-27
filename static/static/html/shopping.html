@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兰士顿旗舰店-购物车</title>
+    <link rel="stylesheet" href="../css/shopping.css">
+    <link rel="stylesheet" href="../../admin/layui/css/layui.css">
+</head>
+
+<body>
+    <div class="war">
+        <div class="head">
+            <div class="left">购物车（全部<span class="number">0</span>）</div>
+            <div class="right">
+                <div class="le">
+                    已选商品（不含运费）<span class="price">0.00</span>
+                </div>
+                <a href="javascript:;" class="ri r_ri">结&nbsp;算</a>
+            </div>
+        </div>
+        <div class="content">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="100">
+                    <col>
+                    <col>
+                    <col width="100">
+                    <col width="150">
+                    <col width="100">
+                    <col width="100">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th><label><input type="checkbox" class="all_check">全选</label></th>
+                        <th>商品信息</th>
+                        <th></th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>金额</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="foot">
+            <div class="left">
+                <div>
+                    <label><input type="checkbox" class="all_check">全选</label>
+                </div>
+                <a href="javascript:;" class="fo_delete">删除</a>
+                <a href="javascript:;" class="move">移入收藏夹</a>
+            </div>
+            <div class="right">
+                <div class="le">已选商品<span class="numb">0</span>件</div>
+                <div class="ri">
+                    <div class="r_le">
+                        合计（不含运费）<span class="price">0.00</span>
+                    </div>
+                    <a href="javascript:;" class="r_ri">结&nbsp;算</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../admin/layui/layui.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
+<script src="../js/template-web.js"></script>
+<script type="text/html" id="tmp">
+    {{each}}
+    <tr>
+        <td><input type="checkbox" class="mall_check"></td>
+        <td class="info">
+            <a href="javascript:;"><img src="http://localhost:3000{{$value.color_img}}" alt=""></a>
+            <a href="./z-index.html{{$value.id}}" style="width: 400px;">{{$value.content}}</a>
+        </td>
+        <td class="cla">【颜色分类】{{$value.type}}</td>
+        <td class="price">
+            <p>¥&nbsp;{{$value.old_price}}</p>
+            <p>¥&nbsp;<span class="new_price">{{$value.new_price}}</span></p>
+        </td>
+        <td class="nu">
+            <a href="javascript:;" class="fh less">-</a>
+            <p class="num">{{$value.num}}</p>
+            <a href="javascript:;" class="fh add">+</a>
+        </td>
+        <td class="money">¥&nbsp;<span class="mon_price">{{$value.new_price}}</td>
+        <td class="cz">
+            <a href="javascript:;" class="move">移入收藏夹</a>
+            <a href="javascript:;" class="delete">删除</a>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+<script src="../js/shop.js"></script>
+
+</html>

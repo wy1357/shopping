@@ -1,0 +1,64 @@
+.nav {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.nav .con {
+  width: 240px;
+}
+.nav .con .link {
+  display: block;
+  text-decoration: none;
+}
+.nav .con .link .dram {
+  width: 240px;
+  margin-bottom: 10px;
+}
+.nav .con .nav1 {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav .con .nav1 .content {
+  width: 35px;
+  margin: 0;
+}
+.nav .con .nav1 .content1 {
+  width: 30px;
+  margin: 2px;
+}
+.nav .con .nav1 .content1 .conts {
+  display: block;
+  text-decoration: none;
+}
+.nav .con .nav1 .content1 .conts .cont {
+  width: 30px;
+  border: 1px solid #ccc;
+}
+.nav .con .value1 {
+  width: 100%;
+  line-height: 20px;
+}
+.nav .con .value1 .p1 {
+  font-size: 14px;
+  color: #cc0000;
+  float: left;
+}
+.nav .con .bottom_content {
+  display: block;
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 18px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  color: #666;
+}
+.nav .con .bottom_content:hover {
+  text-decoration: underline;
+}
+.nav .picture {
+  margin-right: 10px;
+}

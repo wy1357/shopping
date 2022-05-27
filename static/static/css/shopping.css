@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ccc;
+}
+
+a {
+    text-decoration: none;
+}
+
+.war {
+    width: 1280px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.head {
+    padding: 0 20px;
+    height: 72px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.head .left {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.head .right {
+    display: flex;
+    align-items: center;
+}
+
+.head .right .le {
+    font-size: 20px;
+}
+
+.head .right .le span {
+    font-size: 22px;
+    color: #FF5000;
+    margin: 0 8px;
+}
+
+.right .r_ri {
+    display: block;
+    width: 74px;
+    background-color: #aaa;
+    color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 42px;
+}
+
+.content {
+    padding: 0 20px 20px;
+}
+
+.content thead tr {
+    background-color: #fff;
+}
+
+.content thead tr th {
+    border: 0;
+}
+
+.content tbody tr td {
+    border: 0;
+}
+
+input {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.content tbody .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content tbody .info img {
+    width: 38px;
+    display: block;
+    margin-right: 10px;
+}
+
+.content tbody .info a {
+    color: #3c3c3c;
+}
+
+.content tbody .info a:hover {
+    color: #FF5000;
+    text-decoration: underline;
+}
+
+.content tbody .price p:nth-child(1) {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.content tbody .price p:nth-child(2) {
+    color: #3c3c3c;
+    font-weight: bold;
+}
+
+.content tbody .nu {
+    /* display: flex; */
+    overflow: hidden;
+    /* align-items: center; */
+}
+
+.content tbody .fh {
+    float: left;
+    width: 19px;
+    line-height: 25px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.content tbody .fh:hover {
+    border: 1px solid #FF5000;
+    color: #FF5000;
+}
+
+.content tbody .num {
+    float: left;
+    width: 40px;
+    text-align: center;
+    line-height: 25px;
+    border: 1px solid #ccc;
+    border-left: 0;
+    border-right: 0;
+}
+
+.content tbody .money {
+    color: #FF5000;
+    font-weight: bold;
+}
+
+.content tbody .cz a:hover {
+    text-decoration: underline;
+    color: #FF5000;
+}
+
+.foot {
+    padding: 0 20px;
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+}
+
+.foot .left {
+    display: flex;
+}
+
+.foot .left .fo_delete {
+    margin: 0 20px;
+}
+
+.foot .left a:hover {
+    text-decoration: underline;
+    color: #FF5000;
+}
+
+.foot .right {
+    display: flex;
+    align-items: center;
+}
+
+.foot .right .le {
+    margin-right: 30px;
+    color: #000;
+    font-size: 18px;
+}
+
+.foot .right .le .numb {
+    color: #FF5000;
+    font-size: 20px;
+    margin: 0 5px;
+}
+
+.foot .right .ri {
+    display: flex;
+    align-items: center;
+}
+
+.foot.right .ri .r_le {
+    font-size: 20px;
+}
+
+.foot .right .ri .r_le span {
+    font-size: 22px;
+    color: #FF5000;
+    margin: 0 8px;
+}

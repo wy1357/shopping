@@ -1,0 +1,67 @@
+body {
+  overflow-x: hidden;
+}
+body .layui-layout .layui-header .layui-logo {
+  background-color: #23262e !important;
+}
+body .layui-layout .layui-header .layui-nav {
+  font-size: 13px !important;
+}
+body .layui-layout .layui-header .layui-nav .layui-nav-item #header-avatar .layui-nav-img {
+  width: 30px;
+  height: 30px;
+}
+body .layui-layout .layui-header .layui-nav .layui-nav-item #header-avatar .text-avatar {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #009688;
+  border-radius: 50%;
+  line-height: 30px;
+  text-align: center;
+}
+body .layui-layout .layui-header .layui-nav .layui-nav-item .iconfont {
+  margin-right: 6px;
+}
+body .layui-layout .layui-header .layui-nav .layui-nav-item .layui-nav-child dd .layui-icon {
+  margin-right: 6px;
+  margin-left: 15px;
+}
+body .layui-layout .layui-side .slider .user-info-box {
+  line-height: 70px;
+  width: 200px;
+  text-align: center;
+  user-select: none;
+  border-bottom: 1px solid #23262e;
+}
+body .layui-layout .layui-side .slider .user-info-box .welcome {
+  font-size: 12px;
+}
+body .layui-layout .layui-side .slider .user-info-box .text-avatar {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #009688;
+  border-radius: 50%;
+  line-height: 30px;
+  text-align: center;
+}
+body .layui-layout #index {
+  display: block;
+}
+body .layui-layout .layui-body {
+  display: none;
+}
+body .layui-layout .layui-body #container {
+  width: 100%;
+  height: 100%;
+}
+body .layui-layout .layui-body #container iframe {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+body .layui-layout .layui-footer {
+  font-size: 12px;
+  text-align: center;
+}
